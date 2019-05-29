@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: deploy-details
+spec:
+# serviceAccount: build-bot
+  taskRef:
+    name: deploy-using-kubectl
+  inputs:
+    resources:
+    - name: source
+      resourceSpec:
+        type: git
+        params:
+        - name: url
+          value: https://github.com/olegchorny/bookinfo-details
+    - name: image
+      resourceSpec:
+        type: image
+        params:
+        - name: url
+          value: ochorny/bookinfo-details
+    params:
+      - name: path
+        value: /workspace/source/ksvc.yaml #configure: may change according to your source
+      - name: yqArg
+        value: "-d0"
+      - name: yamlPathToImage
+        value: "spec.template.spec.containers[0].image"
