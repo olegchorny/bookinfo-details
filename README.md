@@ -1,1 +1,2 @@
-Komet launch test
+Komet launch test.
+Github Registry test.
