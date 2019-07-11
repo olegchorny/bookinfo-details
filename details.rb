@@ -31,7 +31,7 @@ trap 'INT' do server.shutdown end
 
 server.mount_proc '/health' do |req, res|
     res.status = 200
-    res.body = {'status' => 'OK: Details is healthy and komet works. Deployed from GitHub registry'}.to_json
+    res.body = {'status' => 'OK: Details is healthy and komet works. Deployed from GitHub registry according to branchname'}.to_json
     res['Content-Type'] = 'application/json'
 end
 
