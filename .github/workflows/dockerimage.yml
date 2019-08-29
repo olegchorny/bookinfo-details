@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
+    
     - uses: actions/setup-python@v1
-      name: Setup python
+    
+    - name: Setup python
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # (x64 or x86)
@@ -22,13 +24,12 @@ jobs:
         pip install python-magnumclient
         
     - uses: azure/k8s-actions/setup-kubectl@master
-      name: Setup kubectl
+      
+    - name: Setup kubectl
       with:
         version: 'latest'   
         
     - uses: actions/checkout@v1
-      name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     
-
-
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
