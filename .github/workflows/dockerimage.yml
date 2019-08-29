@@ -15,18 +15,14 @@ jobs:
     - name: Setup python
       uses: actions/setup-python@v1 
       with:
-        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
-        architecture: 'x64' # (x64 or x86)
+        python-version: '3.x'
+        architecture: 'x64' 
     
     - name: Setup openstack client
       run: |
         pip install wheel
         pip install python-openstackclient
         pip install python-magnumclient
-    
-#     - name: Setup k8s context 
-#       run: |
-#         openstack coe cluster list 
      
     - name: Setup kubectl
       run: |
@@ -34,9 +30,7 @@ jobs:
        curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
        echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
        sudo apt-get update
-       sudp apt-get install -y kubectl
+       sudo apt-get install -y kubectl
        
-#      uses: azure/k8s-actions/setup-kubectl@master
-    
     - name: Build the Docker image        
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
