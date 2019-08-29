@@ -24,10 +24,9 @@ jobs:
         pip install python-openstackclient
         pip install python-magnumclient
         
-    - name: Set k8s context
+    - name: Get k8s context
       run: |
         $(openstack coe cluster config ${{ secrets.CLUSTER_NAME }} --os-auth-url ${{ secrets.URL }} --os-identity-api-version 3 --os-project-name ${{ secrets.PROJECT_NAME }} --os-project-domain-name ${{ secrets.USER_DOMAIN_NAME }} --os-username ${{ secrets.USERNAME }} --os-user-domain-name ${{ secrets.USER_DOMAIN_NAME }} --os-password ${{ secrets.PASSWORD }}) &
-        export KUBECONFIG=./config
 
     - name: Setup kubectl
       run: |
@@ -37,9 +36,10 @@ jobs:
        sudo apt-get update
        sudo apt-get install -y kubectl
        
-    - name: Test kubectl
+    - name: Set k8s context and Get cluster-info
       run: |
-       kubectl get pods
+       export KUBECONFIG=./config
+       kubectl cluster-info
        
     - name: Build the Docker image        
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
