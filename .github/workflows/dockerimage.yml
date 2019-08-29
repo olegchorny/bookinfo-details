@@ -18,6 +18,10 @@ jobs:
         sudo pip install python-openstackclient
         sudo pip install python-magnumclient
         
+        
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
+    - uses: azure/k8s-actions/setup-kubectl@master
+    - name: Setup kubectl
