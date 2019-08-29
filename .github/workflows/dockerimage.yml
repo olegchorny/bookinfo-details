@@ -9,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # (x64 or x86)
+    - run: |
+        sudo pip install wheel
+        sudo pip install python-openstackclient
+        sudo pip install python-magnumclient
+        
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
