@@ -26,8 +26,6 @@ jobs:
         
     - name: Setup kubectl
       uses: azure/k8s-actions/setup-kubectl@master
-      with:
-        version: 'latest'   
     
     - name: Build the Docker image        
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
