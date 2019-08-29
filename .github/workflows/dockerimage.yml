@@ -42,4 +42,7 @@ jobs:
        kubectl cluster-info
        
     - name: Build the Docker image        
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: | 
+       sha=${GITHUB_SHA:0:7}
+       app="${GITHUB_REPOSITORY#*/}"
+       docker build --file Dockerfile -t docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha .
