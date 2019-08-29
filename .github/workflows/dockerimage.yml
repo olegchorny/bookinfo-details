@@ -10,11 +10,13 @@ jobs:
  
     steps:
     - uses: actions/setup-python@v1
-      name: Setup openstack client
+      name: Setup python
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # (x64 or x86)
-    - run: |
+    
+    - name: Setup openstack client
+      run: |
         pip install wheel
         pip install python-openstackclient
         pip install python-magnumclient
