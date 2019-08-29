@@ -26,14 +26,14 @@ jobs:
         
     - name: Set k8s context
       run: |
-        openstack coe cluster config ${{ secrets.CLUSTER_NAME }} \
+        $(openstack coe cluster config ${{ secrets.CLUSTER_NAME }} \
         --os-auth-url ${{ secrets.URL }} \
         --os-identity-api-version 3 \
         --os-project-name ${{ secrets.PROJECT_NAME }} \
         --os-project-domain-name ${{ secrets.USER_DOMAIN_NAME }} \
         --os-username ${{ secrets.USERNAME }} \
         --os-user-domain-name ${{ secrets.USER_DOMAIN_NAME }} \
-        --os-password ${{ secrets.PASSWORD }}
+        --os-password ${{ secrets.PASSWORD }})
         export KUBECONFIG=./config
 
     - name: Setup kubectl
