@@ -14,9 +14,9 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # (x64 or x86)
     - run: |
-        sudo pip install wheel
-        sudo pip install python-openstackclient
-        sudo pip install python-magnumclient
+        pip install wheel
+        pip install python-openstackclient
+        pip install python-magnumclient
         
         
     - uses: actions/checkout@v1
