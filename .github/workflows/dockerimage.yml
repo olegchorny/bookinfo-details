@@ -25,7 +25,6 @@ jobs:
     
     - uses: azure/k8s-actions/setup-kubectl@master
     - name: Setup kubectl
-    
-    - uses: azure/k8s-actions/setup-kubectl@master
       with:
-        version: 'latest' 
+        version: 'latest'
+
